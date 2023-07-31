@@ -15,7 +15,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 import jwt
 
-
 #from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -92,8 +91,8 @@ def create_user():
 
     user = User.query.filter_by(email=data['email']).first()
     if user:
-       return jsonify(message= 'user alredy exist'), 400
-   
+        return jsonify(message= 'user alredy exist'), 400
+
     hashed_password = generate_password_hash(data['password'], method='sha256')
 
     new_user = User(
@@ -110,18 +109,16 @@ def create_user():
 
 @app.route('/login', methods=['POST'])
 def handle_login():
+    data = request.get_json()
 
-   data = request.get_json()
-
-   user = User.query.filter_by(email=data['email']).first()
-   if not user:
-       return jsonify(message= 'user not found'), 400
-   
-   if check_password_hash(user.password, data['password']):
-       auth_token = encode_auth_token(user.id)
-       return jsonify(auth_token= auth_token)
-   else:
-       return jsonify(message='Wrong credentials'), 401
+    user = User.query.filter_by(email=data['email']).first()
+    if not user:
+        return jsonify(message= 'user not found'), 400   
+    if check_password_hash(user.password, data['password']):
+        auth_token = encode_auth_token(user.id)
+        return jsonify(auth_token= auth_token)
+    else:
+        return jsonify(message='Wrong credentials'), 401
 
 
 @app.route('/private', methods=['GET'])
@@ -134,8 +131,7 @@ def dashboard():
     #Decode the token
     id = decode_auth_token(auth_token)
 
-    user = User.query.filter_by(id=id).first()
-     
+    user = User.query.filter_by(id=id).first()     
     if not user:
         return jsonify(message='user not found'), 404
 
@@ -155,10 +151,6 @@ def handle_hello():
     users = User.query.all()
     user_list = [user.serialize() for user in users]
     return jsonify(users= user_list)
-
-
-
-
 
 
 # any other endpoint will try to serve it like a static file

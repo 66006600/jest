@@ -42,7 +42,7 @@ export const Login = () => {
     }, []);
 
 	const errorStyle = {
-        borderColor: "red",
+        borderColor: "black",
     };
 
 	return (

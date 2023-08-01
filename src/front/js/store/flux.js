@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			login: async (email, password, navigate) => {
 				try {
 					const response = await fetch(
-						"https://manolos05-didactic-fishstick-66554vpxgjpfr4wp-3001.preview.app.github.dev/login",
+						"https://3001-66006600-jest-wam18chnq10.ws-us102.gitpod.io/login",
 						{
 							method: "POST",
 							headers: {
@@ -49,7 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUser: async () => {
 				const store = getStore()
 				try {
-					const response = await fetch("https://manolos05-didactic-fishstick-66554vpxgjpfr4wp-3001.preview.app.github.dev/private", {
+					const response = await fetch("https://3001-66006600-jest-wam18chnq10.ws-us102.gitpod.io/private", {
 						headers: { Authorization: `Bearer ${store.authToken}` }
 					});
 					if (response.ok) {
@@ -66,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadUser: async () => {
 				const store = getStore();
 				try {
-					const response = await fetch("https://manolos05-didactic-fishstick-66554vpxgjpfr4wp-3001.preview.app.github.dev/user", {
+					const response = await fetch("https://3001-66006600-jest-wam18chnq10.ws-us102.gitpod.io/user", {
 						headers: { Authorization: `Bearer ${store.authToken}` }
 					});
 					if (response.ok) {
@@ -84,33 +84,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.clear()
 				navigate("/")
 			},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

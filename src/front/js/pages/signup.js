@@ -38,7 +38,7 @@ const createUser = async (event) => {
         password2 !== ''
     ){
     try {
-        const response = await fetch('https://manolos05-didactic-fishstick-66554vpxgjpfr4wp-3001.preview.app.github.dev/signup',{
+        const response = await fetch('https://3001-66006600-jest-wam18chnq10.ws-us102.gitpod.io/signup',{
             method: 'POST',
             body: JSON.stringify({
                 email: email,
